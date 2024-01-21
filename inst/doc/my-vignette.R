@@ -54,7 +54,7 @@ psid_str(
 
 ## -----------------------------------------------------------------------------
 input_directory <- system.file(package = "psidread","extdata")
-output_directory <- system.file(package = "psidread","extdata")
+output_directory <- tempdir()
 psid_unzip(indir = input_directory,
            exdir = output_directory,
            zipped = TRUE,

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Shuyi Qiu" />
 
-<meta name="date" content="2024-01-14" />
+<meta name="date" content="2024-01-20" />
 
 <title>psidread: An Easy Way to Build Panel Data from PSID Raw Files</title>
 
@@ -4036,7 +4036,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">psidread: An Easy Way to Build Panel Data
 from PSID Raw Files</h1>
 <h4 class="author">Shuyi Qiu</h4>
-<h4 class="date">2024-01-14</h4>
+<h4 class="date">2024-01-20</h4>
 
 </div>
 
@@ -4159,8 +4159,8 @@ without skipping any steps. This approach ensures a replicable code for
 importing the PSID dataset. Additionally, skipping steps might lead to
 the failure of the complications, particularly if certain prerequisites
 for the code’s operation are not met.</p>
-<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-dd776469a351964973bb" style="width:960px;height:960px;"></div>
-<script type="application/json" data-for="htmlwidget-dd776469a351964973bb">{"x":{"diagram":"\ngraph TB;\n    A[Dataset Downloaded] --> B[psid_str, 3];\n    B --> C{Type};\n    C --> |Packaged| D{.rda files prepared?};\n    C --> |Single| E{.rda files prepared?};\n    D --> |No| F[psid_unzip, 4.1];\n    D --> |Yes| G[psid_read, 5.1];\n    F --> G;\n    E --> |No| H[psid_unzip, 4.2];\n    E --> |Yes| I[psid_read, 5.2];\n    H --> I;\n    G --> J[psid_reshape, 6];\n    I --> J;\n    J --> L((Output));\n    \n    style A fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style B fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style C fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style D fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style E fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style F fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style G fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style H fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style I fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style J fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style L fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n"},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-a8d962c148b776ddccd1" style="width:960px;height:960px;"></div>
+<script type="application/json" data-for="htmlwidget-a8d962c148b776ddccd1">{"x":{"diagram":"\ngraph TB;\n    A[Dataset Downloaded] --> B[psid_str, 3];\n    B --> C{Type};\n    C --> |Packaged| D{.rda files prepared?};\n    C --> |Single| E{.rda files prepared?};\n    D --> |No| F[psid_unzip, 4.1];\n    D --> |Yes| G[psid_read, 5.1];\n    F --> G;\n    E --> |No| H[psid_unzip, 4.2];\n    E --> |Yes| I[psid_read, 5.2];\n    H --> I;\n    G --> J[psid_reshape, 6];\n    I --> J;\n    J --> L((Output));\n    \n    style A fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style B fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style C fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style D fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style E fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style F fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style G fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style H fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style I fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style J fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style L fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="psid_str-build-your-table-of-structure" class="section level1">
 <h1>3. <code>psid_str()</code>: Build Your Table of Structure</h1>
@@ -4277,7 +4277,7 @@ can set the <code>exdir</code> to other directory so that the output
 <code>.rda</code> files will be exported there separately from the
 directory you put the original downloaded data files.</p>
 <pre class="r"><code>input_directory &lt;- system.file(package = &quot;psidread&quot;,&quot;extdata&quot;)
-output_directory &lt;- system.file(package = &quot;psidread&quot;,&quot;extdata&quot;)
+output_directory &lt;- tempdir()
 psid_unzip(indir = input_directory,
            exdir = output_directory,
            zipped = TRUE,

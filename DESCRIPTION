@@ -1,7 +1,7 @@
 Package: psidread
 Title: Streamline Building Panel Data from Panel Study of Income
         Dynamics ('PSID') Raw Files
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     person("Shuyi", "Qiu", , "shuyi.qiu@duke.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0000-9730-5262"))
@@ -17,9 +17,9 @@ Config/testthat/edition: 3
 VignetteBuilder: knitr
 Language: en-US
 NeedsCompilation: no
-Packaged: 2024-01-14 18:46:00 UTC; RachelChiu
+Packaged: 2024-01-21 03:36:52 UTC; RachelChiu
 Author: Shuyi Qiu [aut, cre] (<https://orcid.org/0009-0000-9730-5262>)
 Maintainer: Shuyi Qiu <shuyi.qiu@duke.edu>
 Depends: R (>= 3.5.0)
 Repository: CRAN
-Date/Publication: 2024-01-15 17:00:02 UTC
+Date/Publication: 2024-01-21 22:10:02 UTC
