@@ -11,7 +11,7 @@
 
 <meta name="author" content="Shuyi Qiu" />
 
-<meta name="date" content="2024-01-20" />
+<meta name="date" content="2024-01-23" />
 
 <title>psidread: An Easy Way to Build Panel Data from PSID Raw Files</title>
 
@@ -4036,7 +4036,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">psidread: An Easy Way to Build Panel Data
 from PSID Raw Files</h1>
 <h4 class="author">Shuyi Qiu</h4>
-<h4 class="date">2024-01-20</h4>
+<h4 class="date">2024-01-23</h4>
 
 </div>
 
@@ -4084,9 +4084,9 @@ shopping cart</a> with only selected variables. These two methods have
 both pros and cons:</p>
 <table style="width:100%;">
 <colgroup>
-<col width="2%" />
-<col width="49%" />
-<col width="46%" />
+<col width="5%" />
+<col width="48%" />
+<col width="45%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4159,8 +4159,8 @@ without skipping any steps. This approach ensures a replicable code for
 importing the PSID dataset. Additionally, skipping steps might lead to
 the failure of the complications, particularly if certain prerequisites
 for the code’s operation are not met.</p>
-<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-a8d962c148b776ddccd1" style="width:960px;height:960px;"></div>
-<script type="application/json" data-for="htmlwidget-a8d962c148b776ddccd1">{"x":{"diagram":"\ngraph TB;\n    A[Dataset Downloaded] --> B[psid_str, 3];\n    B --> C{Type};\n    C --> |Packaged| D{.rda files prepared?};\n    C --> |Single| E{.rda files prepared?};\n    D --> |No| F[psid_unzip, 4.1];\n    D --> |Yes| G[psid_read, 5.1];\n    F --> G;\n    E --> |No| H[psid_unzip, 4.2];\n    E --> |Yes| I[psid_read, 5.2];\n    H --> I;\n    G --> J[psid_reshape, 6];\n    I --> J;\n    J --> L((Output));\n    \n    style A fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style B fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style C fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style D fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style E fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style F fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style G fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style H fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style I fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style J fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style L fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n"},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-1468a7cbab8c82b32993" style="width:960px;height:960px;"></div>
+<script type="application/json" data-for="htmlwidget-1468a7cbab8c82b32993">{"x":{"diagram":"\ngraph TB;\n    A[Dataset Downloaded] --> B[psid_str, 3];\n    B --> C{Type};\n    C --> |Packaged| D{.rda files prepared?};\n    C --> |Single| E{.rda files prepared?};\n    D --> |No| F[psid_unzip, 4.1];\n    D --> |Yes| G[psid_read, 5.1];\n    F --> G;\n    E --> |No| H[psid_unzip, 4.2];\n    E --> |Yes| I[psid_read, 5.2];\n    H --> I;\n    G --> J[psid_reshape, 6];\n    I --> J;\n    J --> L((Output));\n    \n    style A fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style B fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style C fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style D fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style E fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style F fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style G fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style H fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style I fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style J fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n    style L fill:#ffffff,stroke:#4d4d4d,stroke-width:1px;\n"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="psid_str-build-your-table-of-structure" class="section level1">
 <h1>3. <code>psid_str()</code>: Build Your Table of Structure</h1>
@@ -4276,6 +4276,11 @@ directory. Here I set the input and output directory to be the same. You
 can set the <code>exdir</code> to other directory so that the output
 <code>.rda</code> files will be exported there separately from the
 directory you put the original downloaded data files.</p>
+<p>Please note that in the below example we use
+<code>system.file...</code> and <code>tempdir()</code> just because we
+would like to use the data file in the package file folder. In practice,
+it should be your directory pathway in the format like
+<code>&quot;your/directory/pathway/psid/file/folder&quot;</code></p>
 <pre class="r"><code>input_directory &lt;- system.file(package = &quot;psidread&quot;,&quot;extdata&quot;)
 output_directory &lt;- tempdir()
 psid_unzip(indir = input_directory,
@@ -4283,12 +4288,6 @@ psid_unzip(indir = input_directory,
            zipped = TRUE,
            type = &quot;package&quot;,
            filename = NA)</code></pre>
-<pre><code>## File fam2013er.zip has been unzipped!</code></pre>
-<pre><code>## File fam2017er.zip has been unzipped!</code></pre>
-<pre><code>## File ind2021er.zip has been unzipped!</code></pre>
-<pre><code>## Data file fam2013er.rda has been created successfully!</code></pre>
-<pre><code>## Data file fam2017er.rda has been created successfully!</code></pre>
-<pre><code>## Data file ind2021er.rda has been created successfully!</code></pre>
 <p>If you have already unzipped <strong>ALL</strong> the
 <code>.zip</code> data files. You can also skip the procedure by setting
 the <code>zipped</code> argument to be <code>FALSE</code>:</p>
@@ -4297,9 +4296,6 @@ the <code>zipped</code> argument to be <code>FALSE</code>:</p>
            zipped = FALSE,
            type = &quot;package&quot;,
            filename = NA)</code></pre>
-<pre><code>## Data file fam2013er.rda has been created successfully!</code></pre>
-<pre><code>## Data file fam2017er.rda has been created successfully!</code></pre>
-<pre><code>## Data file ind2021er.rda has been created successfully!</code></pre>
 <p>It takes some time to unzip and convert all the packaged files if
 your analysis involves numerous waves of data. Therefore, once this
 function is executed and all the <code>.rda</code> files needed to
@@ -4325,8 +4321,6 @@ to packaged files, you will need to</p>
            zipped = TRUE,
            type = &quot;single&quot;,
            filename = &quot;J327825.zip&quot;)</code></pre>
-<pre><code>## File J327825.zip has been unzipped!</code></pre>
-<pre><code>## Data file J327825.rda has been created successfully!</code></pre>
 <p>The user can also use <code>psid_unzip()</code> in this way to unzip
 and convert specific packaged data files, especially when they are
 adding one wave to their dataset but do not want to go through the whole

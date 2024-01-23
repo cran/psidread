@@ -52,28 +52,28 @@ psid_str(
   type = "integrated"
 )
 
-## -----------------------------------------------------------------------------
-input_directory <- system.file(package = "psidread","extdata")
-output_directory <- tempdir()
-psid_unzip(indir = input_directory,
-           exdir = output_directory,
-           zipped = TRUE,
-           type = "package",
-           filename = NA)
+## ----eval = F-----------------------------------------------------------------
+#  input_directory <- system.file(package = "psidread","extdata")
+#  output_directory <- tempdir()
+#  psid_unzip(indir = input_directory,
+#             exdir = output_directory,
+#             zipped = TRUE,
+#             type = "package",
+#             filename = NA)
 
-## -----------------------------------------------------------------------------
-psid_unzip(indir = input_directory,
-           exdir = output_directory,
-           zipped = FALSE,
-           type = "package",
-           filename = NA)
+## ----eval = F-----------------------------------------------------------------
+#  psid_unzip(indir = input_directory,
+#             exdir = output_directory,
+#             zipped = FALSE,
+#             type = "package",
+#             filename = NA)
 
-## -----------------------------------------------------------------------------
-psid_unzip(indir = input_directory,
-           exdir = output_directory,
-           zipped = TRUE,
-           type = "single",
-           filename = "J327825.zip")
+## ----eval = F-----------------------------------------------------------------
+#  psid_unzip(indir = input_directory,
+#             exdir = output_directory,
+#             zipped = TRUE,
+#             type = "single",
+#             filename = "J327825.zip")
 
 ## -----------------------------------------------------------------------------
 psid_varlist = c(" hh_age || [13]ER53017 [17]ER66017", " p_age || [13]ER34204")
